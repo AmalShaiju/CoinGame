@@ -28,7 +28,6 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.pnlPlayer = new System.Windows.Forms.Panel();
             this.label1 = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
             this.lblPoints = new System.Windows.Forms.Label();
@@ -36,16 +35,8 @@
             this.label6 = new System.Windows.Forms.Label();
             this.lblPowerUpTimer = new System.Windows.Forms.Label();
             this.lblPowerUpMsg = new System.Windows.Forms.Label();
+            this.pnlPlayer = new System.Windows.Forms.Panel();
             this.SuspendLayout();
-            // 
-            // pnlPlayer
-            // 
-            this.pnlPlayer.BackColor = System.Drawing.Color.Red;
-            this.pnlPlayer.ForeColor = System.Drawing.Color.Red;
-            this.pnlPlayer.Location = new System.Drawing.Point(200, 200);
-            this.pnlPlayer.Name = "pnlPlayer";
-            this.pnlPlayer.Size = new System.Drawing.Size(15, 15);
-            this.pnlPlayer.TabIndex = 1;
             // 
             // label1
             // 
@@ -107,6 +98,15 @@
             this.lblPowerUpMsg.Size = new System.Drawing.Size(0, 13);
             this.lblPowerUpMsg.TabIndex = 40;
             // 
+            // pnlPlayer
+            // 
+            this.pnlPlayer.BackColor = System.Drawing.Color.Red;
+            this.pnlPlayer.ForeColor = System.Drawing.Color.Red;
+            this.pnlPlayer.Location = new System.Drawing.Point(200, 200);
+            this.pnlPlayer.Name = "pnlPlayer";
+            this.pnlPlayer.Size = new System.Drawing.Size(15, 15);
+            this.pnlPlayer.TabIndex = 1;
+            // 
             // PlayingField
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -129,8 +129,6 @@
         }
 
         #endregion
-
-        private System.Windows.Forms.Panel pnlPlayer;
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.Label lblPoints;
@@ -138,6 +136,7 @@
         private System.Windows.Forms.Label label6;
         private System.Windows.Forms.Label lblPowerUpTimer;
         private System.Windows.Forms.Label lblPowerUpMsg;
+        private System.Windows.Forms.Panel pnlPlayer;
     }
 }
 

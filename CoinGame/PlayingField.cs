@@ -7,6 +7,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using CoinGame.Wrappers;
 using Models;
 using Wrappers;
 
@@ -51,7 +52,10 @@ namespace CoinGame
 
         private void HandleGameEnd()
         {
-            DialogResult dialogResult = MessageBox.Show($"New Highscore = {Points} \nWould you like to play again", "Some Title", MessageBoxButtons.YesNo);
+            ((MDIParent)MdiParent).AddToHighScore(Points);
+            string s = "";
+            ((MDIParent)MdiParent).GetHighScores().ForEach(p => s += p.Name + "\t" + "\t" + p.Score + "\n\n");
+            DialogResult dialogResult = MessageBox.Show($"Your score = {Points} \n{s} Would you like to play again", "Game End", MessageBoxButtons.YesNo);
             if (dialogResult == DialogResult.Yes)
             {
                 GameReset();
@@ -61,6 +65,7 @@ namespace CoinGame
                 this.Close();
             }
         }
+
         private void GameReset()
         {
             Points = 0;
@@ -108,6 +113,7 @@ namespace CoinGame
                 int newY = (pnlPlayer.Location.Y + PlayerSpeed <= 400) ? pnlPlayer.Location.Y + PlayerSpeed : 400;
                 pnlPlayer.Location = new Point(pnlPlayer.Location.X, newY);
             }
+           
             else return;
 
             DidPlayerInstersect();

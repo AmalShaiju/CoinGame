@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace CoinGame.Models
 {
-    public class HighScore: IComparable<HighScore>
+    public class HighScore: IComparable<HighScore>, IEquatable<HighScore>
     {
         public int Score { get; set; }
         public string Name { get; set; }
@@ -19,7 +19,12 @@ namespace CoinGame.Models
 
         public int CompareTo(HighScore other)
         {
-            return other.Score > this.Score ? -1 : 1;
+            return other.Score > this.Score ? 1 : -1;
+        }
+
+        public bool Equals(HighScore other)
+        {
+            return other.Name.ToLower() == this.Name.ToLower();
         }
     }
 }
