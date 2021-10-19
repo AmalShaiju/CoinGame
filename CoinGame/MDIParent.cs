@@ -54,7 +54,7 @@ namespace CoinGame
         public void AddToHighScore(int score)
         {
             HighScore highScoreToAdd = new HighScore(CurrentPlayerName, score);
-            if (HighScores.Contains(highScoreToAdd))
+            if (HighScores.Contains(highScoreToAdd)) // if Player already exist in learderboard
                 HighScores.Find(p => p.Name.ToLower() == CurrentPlayerName.ToLower()).Score = score;
             else
                 HighScores.Add(highScoreToAdd);
@@ -66,7 +66,7 @@ namespace CoinGame
             return score > HighScores.First().Score;
         }
 
-        private void OpenGameWindow()
+        public void OpenGameWindow()
         {
             IsGameWindowShown = true;
             GameWindow = new PlayingField();
@@ -74,7 +74,7 @@ namespace CoinGame
             GameWindow.Show();
         }
 
-        private void CloseGameWindow()
+        public void CloseGameWindow()
         {
             if (IsGameWindowShown)
                 GameWindow.Close();
@@ -118,6 +118,7 @@ namespace CoinGame
         {
             StartGame();
         }
+
         private void rulesToolStripMenuItem_Click(object sender, EventArgs e)
         {
             MessageBox.Show(

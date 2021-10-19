@@ -24,7 +24,7 @@ namespace CoinGame
         public PlayingField()
         {
             InitializeComponent();
-            StartGame();
+            StartGame();    
         }
 
         private void StartGame()
@@ -36,7 +36,7 @@ namespace CoinGame
             GameTimer.SetTime(0, 20);
             GameTimer.Start();
             GameTimer.TimeChanged += () => lblGameTimer.Text = GameTimer.TimeLeftMsStr;
-            GameTimer.StepMs = 1;
+            GameTimer.StepMs = 77;
             GameTimer.CountDownFinished += () => HandleGameEnd();
 
 
@@ -46,12 +46,16 @@ namespace CoinGame
             PowerUpTimer.IsRepeat = true;
             PowerUpTimer.TimeChanged += () => lblPowerUpTimer.Text = PowerUpTimer.TimeLeftMsStr;
             PowerUpTimer.CountDownFinished += () => GenerateCoin();
-            GameTimer.StepMs = 1;
+            GameTimer.StepMs = 77;
 
         }
 
         private void HandleGameEnd()
         {
+            PowerUpTimer.Dispose();
+            GameTimer.Dispose();
+            LiveCoins.ForEach(p => Controls.Remove(p.CoinPanel));
+            LiveCoins.Clear();
             ((MDIParent)MdiParent).AddToHighScore(Points);
             string s = "";
             ((MDIParent)MdiParent).GetHighScores().ForEach(p => s += p.Name + "\t" + "\t" + p.Score + "\n\n");
@@ -62,7 +66,7 @@ namespace CoinGame
             }
             else if (dialogResult == DialogResult.No)
             {
-                this.Close();
+                ((MDIParent)MdiParent).CloseGameWindow();
             }
         }
 
@@ -82,6 +86,7 @@ namespace CoinGame
             Coin newCoin = new Coin();
             LiveCoins.Add(newCoin);
             Controls.Add(newCoin.CoinPanel);
+            newCoin.MoveCoin();
         }
 
         private void RemoveCoin(Coin coin)
